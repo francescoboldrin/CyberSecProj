@@ -9,7 +9,7 @@ from MailCrafter import craft_mail
 def send_mail(receiver):
     # Email details
     receiver_email = receiver["email"]  # The receiver's email address
-    sender_email = "cybersecproj1@zohomail.eu"  # Your authenticated Zoho email address
+    sender_email = "yourmail@mail"  # Your authenticated Zoho email address
     subject = "Login credentials retrieval"  # The subject of the email
     body = craft_mail(receiver)  # The body of the email
 
@@ -22,12 +22,12 @@ def send_mail(receiver):
     message["From"] = f"Login reinsert <{sender_email}>"  # Use authenticated email as 'From'
     message["To"] = receiver_email
     message["Subject"] = subject
-    message["Reply-To"] = "cybersecproj@zoho.mail.eu"  # Replies go to this address
+    message["Reply-To"] = "yourmail@mail"  # Replies go to this address
     message.attach(MIMEText(body, "plain"))
 
     # Zoho SMTP credentials
     smtp_user = sender_email
-    smtp_password = "Merlino.00"  # Use an app-specific password if 2FA is enabled
+    smtp_password = "yourpassword"  # Use an app-specific password if 2FA is enabled
 
     # Establish connection to the SMTP server
     try:

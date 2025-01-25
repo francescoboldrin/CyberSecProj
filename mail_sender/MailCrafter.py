@@ -12,7 +12,7 @@ import google.generativeai as genai
 
 def crafting_mail(prompt):
 
-    genai.configure(api_key="AIzaSyDoxp3PrUCHmG1-faxv4yNpzDpEmLyqvos")
+    genai.configure(api_key="GEMINI-API-KEY")
     
     model = genai.GenerativeModel("gemini-1.5-flash")
 

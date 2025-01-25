@@ -1,14 +1,14 @@
 [
       {
           "id": 1,
-          "name": "Francesco Boldrin",
-          "email": "francesco.boldrin@insa-lyon.fr",
+          "name": "Mock Name",
+          "email": "mock1.mock2@insa-lyon.fr",
           "role": "student"
       },
       {
           "id": 2,
-          "name": "Adrian Merle",
-          "email": "adrian.merle@insa-lyon.fr",
+          "name": "Mock name2",
+          "email": "mock3.mock4@insa-lyon.fr",
           "role": "student"
       }
 ]
