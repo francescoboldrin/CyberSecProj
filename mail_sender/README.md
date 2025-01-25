@@ -22,3 +22,6 @@ We are trying to implement a welldetailed phishing attack on a website. We will 
 5. Report Tool
 6. Prevention Tool
 7. Website
+
+# Possible attacks
+1. stealing "partage" mail portal credentials

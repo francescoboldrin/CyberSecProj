@@ -2,7 +2,7 @@
 Author: francesco boldrin francesco.boldrin@studenti.unitn.it
 Date: 2025-01-06 14:14:55
 LastEditors: francesco boldrin francesco.boldrin@studenti.unitn.it
-LastEditTime: 2025-01-06 15:12:56
+LastEditTime: 2025-01-25 14:59:00
 FilePath: MailCrafter.py
 Description: 这是默认设置,可以在设置》工具》File Description中进行配置
 """
@@ -24,20 +24,6 @@ def crafting_mail(prompt):
                                     )
     # take the text from the answer and ask to gemini to generate the email
 
-    prompt = (f"""
-        I need your help refining an email to send to my friend. The goal is to casually and naturally encourage him to use my link to check out my beautiful website.
-
-        This is my first draft:
-        {answer}
-
-        Please improve only the body of the email. Make it more engaging and persuasive while keeping the tone friendly, informal, and relatable—like a natural chat between friends. Avoid any formal language or being too pushy. The content should spark his curiosity and interest without feeling forced.
-
-        **Important**: Only improve the body of the email. Do not add any additional introductory or closing text—just refine the main message.
-
-        **Please ensure the link remains intact and is not altered in any way.**
-
-        Please deliver the revised email, fully written and ready to send, ONLY ONE OPTION.
-    """)
 
     response = model.generate_content(prompt,
                                     generation_config=genai.types.GenerationConfig(
@@ -75,38 +61,25 @@ def ask_openai(query, model="gpt-3.5-turbo", max_tokens=150):
 
     except openai.error.OpenAIError as e:
         return f"An error occurred: {str(e)}"
+def craft_mail(user_data):
+    prompt = f"""
+    I need your help crafting a formal email from the administrative office to a student. The purpose of the email is to encourage the student to reinsert their login credentials by clicking a provided link. The email should be persuasive, clear, and professional in tone, focusing on ensuring the student understands the importance of completing this action promptly.
 
-# Example usage
-def test_crafting_mail():
-    data = {
-        "name_of_receiver": "adrian merle",
-        "nickname_of_receiver": "Big A",
-        "school": "INSA Lyon",
-        "sender_name": "Ricky Martin",
-        "nickname_of_sender": "Ricky M",
-        "best_friend_name": "francesco boldrin",
-        "nickname_of_best_friend": "frank",
-        "favorite_food": "pizza",
-        "sport": "basketball",
-        "movie": "star wars",
-        "website": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        "message": "this is a test message"
-    }
+    The following user data is provided:
+    {user_data}
 
-    prompt = (f"""
-            I need your help crafting an email to send to my friend. The goal is to casually and naturally encourage him to use my link to check out my beautiful website. 
-            Please use all the details I’ve provided below to make the email feel like a genuine conversation between friends:
-            {data}
+    Please only improve the **body** of the email (do not include additional introductory or closing text).
 
-            The tone should be friendly, informal, and relatable—like a natural chat. Avoid sounding overly formal or pushy, but still make it engaging and persuasive enough to spark his curiosity and interest.
-            Please deliver the email fully written and ready to send.
-            """)
+    Important details:
+    - **Action required**: Reinsert login credentials.
+    - **Goal**: Persuade the student to click on the provided link.
+    - **Tone**: Formal and professional.
+    - **Link to the login page**: http://localhost:3000
+
+    Use the information above to refine the body of the email effectively.
+    """
     
     response = crafting_mail(prompt)
     
-    
     return f"{response}"
-
-if __name__ == "__main__":
-    test_crafting_mail()
 

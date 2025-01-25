@@ -1,0 +1,14 @@
+[
+      {
+          "id": 1,
+          "name": "Francesco Boldrin",
+          "email": "francesco.boldrin@insa-lyon.fr",
+          "role": "student"
+      },
+      {
+          "id": 2,
+          "name": "Adrian Merle",
+          "email": "adrian.merle@insa-lyon.fr",
+          "role": "student"
+      }
+]
