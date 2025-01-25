@@ -22,7 +22,7 @@ def send_mail(receiver):
     message["From"] = f"Login reinsert <{sender_email}>"  # Use authenticated email as 'From'
     message["To"] = receiver_email
     message["Subject"] = subject
-    message["Reply-To"] = "cybersecproj@zoho.mail.eu"  # Replies go to this address
+    message["Reply-To"] = "yourmail@mail"  # Replies go to this address
     message.attach(MIMEText(body, "plain"))
 
     # Zoho SMTP credentials
