@@ -50,10 +50,10 @@ import logging
 def send_email():
     smtp_server = "smtp.insa-lyon.fr"
     smtp_port = 587  # Port for STARTTLS
-    smtp_user = "francesco.boldrin@insa-lyon.fr"  # Your email address
-    smtp_password = "Mustafar.2001"  # Your password (or app-specific password)
-    sender_email = "francesco.boldrin@insa-lyon.fr"  # Your email address
-    receiver_email = "adrian.merle@insa-lyon.fr"  # Receiver's email address
+    smtp_user = "examplemail@insa-lyon.fr"  # Your email address
+    smtp_password = "PASSWORD"  # Your password (or app-specific password)
+    sender_email = "examplemail@insa-lyon.fr"  # Your email address
+    receiver_email = "examplemail@insa-lyon.fr"  # Receiver's email address
     subject = "Test Email from INSA Lyon"
     body = "This is a test email sent without SMTP AUTH."
 
@@ -101,8 +101,8 @@ def send_email():
 send_email()
 
 # # Email details
-# sender_email = "francesco.boldrin@insa-lyon.fr"  # Your email address with the domain
-# receiver_email = "cescooo50@gmail.com"          # Receiver's email address
+# sender_email = "examplemail@insa-lyon.fr"  # Your email address with the domain
+# receiver_email = "examplemail@gmail.com"          # Receiver's email address
 # subject = "Test Email from INSA Lyon"
 # body = "This is a test email sent from Python using the INSA Lyon SMTP server!"
 #
@@ -118,8 +118,8 @@ send_email()
 # message.attach(MIMEText(body, "plain"))
 #
 # # INSA Lyon SMTP credentials (replace with your actual credentials)
-# smtp_user = "francesco.boldrin@insa-lyon.fr"  # Your INSA Lyon email address
-# smtp_password = "Mustafar.2001"  # Your password (or app-specific password)
+# smtp_user = "examplemail@insa-lyon.fr"  # Your INSA Lyon email address
+# smtp_password = "PASSWORD"  # Your password (or app-specific password)
 #
 # # Establish connection to the SMTP server
 # try:

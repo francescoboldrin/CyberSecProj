@@ -3,9 +3,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Email details
-sender_email = "cybersecproj1@zohomail.eu"  # Your Zoho email address (authenticated)
-receiver_email = "francesco.boldrin@insa-lyon.fr"      # Receiver's email address
-forged_sender_email = "francesco.boldrin@insa-lyon.fr"  # Forged sender's email address
+sender_email = "examplemail@zohomail.eu"  # Your Zoho email address (authenticated)
+receiver_email = "examplemail@insa-lyon.fr"      # Receiver's email address
+forged_sender_email = "examplemailn@insa-lyon.fr"  # Forged sender's email address
 subject = "Test Email from Zoho"
 body = "This is a test email sent from Python using Zoho SMTP!"
 
@@ -22,8 +22,8 @@ message["Reply-To"] = forged_sender_email  # Set the forged email address for re
 message.attach(MIMEText(body, "plain"))
 
 # Zoho SMTP credentials
-smtp_user = "cybersecproj1@zohomail.eu"
-smtp_password = "Merlino.00"  # Use an app-specific password if 2FA is enabled
+smtp_user = "examplemail@zohomail.eu"
+smtp_password = "PASSWORD"  # Use an app-specific password if 2FA is enabled
 
 # Establish connection to the SMTP server
 try:
