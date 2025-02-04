@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "name": "Francesco Boldrin",
+    "email": "francesco.boldrin@insa-lyon.fr",
+    "role": "Student"
+  },
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@insa-lyon.fr",
+    "role": "professor"
+    },
+    {
+    "id": 2,
+    "name": "Jane Doe",
+    "email": "jane.doe@insa-lyon.fr",
+    "role": "student"
+    },
+    {
+    "id": 3,
+    "name": "John Smith",
+    "email": "john.smith@insa-lyon.fr",
+    "role": "student"
+    }
+]
